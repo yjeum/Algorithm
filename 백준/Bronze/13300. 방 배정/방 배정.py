@@ -11,5 +11,9 @@ for i in range(N):
 
 room = 0
 for i in student:
-    room += i//2 + i%2
+    if i%K == 0:
+        room += i//K
+    else:
+        if i != 0:
+            room += i//K + 1
 print(room)
