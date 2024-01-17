@@ -9,8 +9,8 @@ def solution(n, words):
             used.append(words[i])
             before = words[i]
         else:
-            cnt = (i % n) + 1
-            person = (i // n) + 1
+            person = (i % n) + 1
+            cnt = (i // n) + 1
             break
     
-    return [cnt, person]
+    return [person, cnt]
