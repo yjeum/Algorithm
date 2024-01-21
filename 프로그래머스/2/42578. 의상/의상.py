@@ -9,6 +9,5 @@ def solution(clothes):
     answer = 1
     for value in clothes_type.values():
         answer *= (value + 1)
-    print(answer)
     
     return answer - 1
