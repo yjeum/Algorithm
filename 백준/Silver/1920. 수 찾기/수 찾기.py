@@ -9,12 +9,9 @@ M = int(input())
 M_lst = list(map(int, input().split()))
 
 num_dic = {}
-for i in N_lst:
-    if i in num_dic:
-        num_dic[i] += 1
-    else:
-        num_dic[i] = 1
-
+for number in N_lst:
+    num_dic[number] = num_dic.get(number, 0) + 1
+    
 for i in M_lst:
     if i in num_dic:
         print(1)
