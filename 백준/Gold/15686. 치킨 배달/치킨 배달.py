@@ -3,6 +3,7 @@ from itertools import combinations
 
 input = sys.stdin.readline
 
+
 def length(pick):
     pick_dis = 0
     for hi, hj in house:
