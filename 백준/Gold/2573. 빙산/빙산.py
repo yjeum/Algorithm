@@ -1,68 +1,62 @@
-import sys
 from collections import deque
 
-input = sys.stdin.readline
+def bfs(i, j):
+    queue = deque([(i, j)])
+    visited[i][j] = 1
 
-didj = [[0, 1], [1, 0], [-1, 0], [0, -1]]
-
-
-def melt(arr):
-    n_arr = [[0] * (M) for _ in range(N)]
-
-    for i in range(N):
-        for j in range(M):
-
-            if arr[i][j] != 0:
-                temp = 0
-                for di, dj in didj:
-                    ni, nj = i + di, j + dj
-                    if 0 <= ni < N and 0 <= nj < M and arr[ni][nj] == 0:
-                        temp += 1
-
-                n_arr[i][j] = arr[i][j] - temp
-                if n_arr[i][j] < 0:
-                    n_arr[i][j] = 0
-
-    return n_arr
-
-
-def bfs(n_arr):
-    visited = [[0] * (M) for _ in range(N)]
-    q = deque([])
-    cnt = 0
-    for i in range(N):
-        for j in range(M):
-
-            if n_arr[i][j] != 0 and visited[i][j] == 0:
-                q.append((i, j))
-                visited[i][j] = 1
-
-                while q:
-                    ci, cj = q.popleft()
-                    for di, dj in didj:
-                        ni, nj = ci + di, cj + dj
-                        if 0 <= ni < N and 0 <= nj < M:
-                            if n_arr[ni][nj] != 0 and visited[ni][nj] == 0:
-                                q.append((ni, nj))
-                                visited[ni][nj] = 1
-                cnt += 1
-
-    return cnt
+    while queue:
+        i, j = queue.popleft()
+        for di, dj in [[1, 0], [0, 1], [-1, 0], [0, -1]]:
+            ni, nj = i + di, j + dj
+            if arr[ni][nj] and visited[ni][nj] == 0:
+                queue.append((ni, nj))
+                visited[ni][nj] = 1
 
 
 N, M = map(int, input().split())
 arr = [list(map(int, input().split())) for _ in range(N)]
-time = 0
+year = 0
 
-while True:
-    arr = melt(arr)
-    cnt = bfs(arr)
+while 1:
+    new_arr = [[0] * M for _ in range(N)]
+    # 매 1년마다 빙산 녹이기
+    for i in range(N):
+        for j in range(M):
+            if arr[i][j]:
+                cnt = 0
+                for di, dj in [[0, 1], [1, 0], [-1, 0], [0, -1]]:
+                    ni, nj = i + di, j + dj
+                    if arr[ni][nj] == 0:
+                        cnt += 1
+                # if cnt: 를 넣으면 상하좌우 전부 수에 둘려쌓여 있어서 
+								# 안 녹는 경우를 처리 못함.
+                # 안 녹으면 숫자 그대로 new_arr에 넣어줘야 되는데 
+								# cnt가 안쌓여서 재할당이 안되니까
+                # 처음 new_arr 만들 때 넣어놓은 0으로 유지되기 때문
+                new = arr[i][j] - cnt
+                if new < 0:
+                    new = 0
+                new_arr[i][j] = new
 
-    if cnt == 0:
-        print(0)
+    year += 1
+    arr = new_arr
+
+    num_ice = 0
+    visited = [[0] * M for _ in range(N)]
+    flag = False
+    
+    # 빙산 개수 세기
+    for k in range(N):
+        for l in range(M):
+            if arr[k][l] and visited[k][l] == 0:
+                bfs(k, l)
+                num_ice += 1
+                flag = True
+    
+    if num_ice >= 2:
+        print(year)
         break
-    elif cnt == 1:
-        time += 1
-    else:
-        print(time + 1)
+
+    if flag is False:
+        print(0)
         break
