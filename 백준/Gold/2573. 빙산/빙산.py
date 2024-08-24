@@ -16,7 +16,7 @@ def melt(arr):
                 temp = 0
                 for di, dj in didj:
                     ni, nj = i + di, j + dj
-                    if 0 <= ni < N and 0 <= nj < M and arr[ni][nj] == 0:
+                    if arr[ni][nj] == 0:
                         temp += 1
 
                 n_arr[i][j] = arr[i][j] - temp
@@ -41,10 +41,9 @@ def bfs(n_arr):
                     ci, cj = q.popleft()
                     for di, dj in didj:
                         ni, nj = ci + di, cj + dj
-                        if 0 <= ni < N and 0 <= nj < M:
-                            if n_arr[ni][nj] != 0 and visited[ni][nj] == 0:
-                                q.append((ni, nj))
-                                visited[ni][nj] = 1
+                        if n_arr[ni][nj] != 0 and visited[ni][nj] == 0:
+                            q.append((ni, nj))
+                            visited[ni][nj] = 1
                 cnt += 1
 
     return cnt
