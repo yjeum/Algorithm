@@ -5,6 +5,7 @@ input = sys.stdin.readline
 direction = [(-1, 0), (0, 1), (1, 0), (0, -1)]
 
 N = int(input())
+target = int(input())
 arr = [[0] * N for _ in range(N)]
 arr[N // 2][N // 2] = 1
 
@@ -14,8 +15,12 @@ ci, cj = N // 2, N // 2
 step = 1
 c_step = 0
 flag = False
+answer = [1, 1]
 
 while cur < N * N:
+
+    if arr[ci][cj] == target:
+        answer = [ci + 1, cj + 1]
 
     ci, cj = ci + direction[c_di][0], cj + direction[c_di][1]
     cur += 1
@@ -32,12 +37,6 @@ while cur < N * N:
         else:
             flag = True
 
-check = int(input())
-a_i, a_j = 0, 0
 for i in range(N):
-    for j in range(N):
-        print(arr[i][j], end=" ")
-        if arr[i][j] == check:
-            a_i, a_j = i, j
-    print()
-print(a_i + 1, a_j + 1)
+    print(" ".join(map(str, arr[i])))
+print(" ".join(map(str, answer)))
