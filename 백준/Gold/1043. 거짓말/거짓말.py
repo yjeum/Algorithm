@@ -39,8 +39,7 @@ if truth[0] == 0:
     print(M)
 
 else:
-    for i in range(truth[0]):
-        union_ori(truth)
+    union_ori(truth)
 
     arr = [list(map(int, input().split())) for _ in range(M)]
 
