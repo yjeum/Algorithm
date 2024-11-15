@@ -20,9 +20,7 @@ def recur(ci, cj, depth, place, visited):
         ni, nj = ci + di, cj + dj
         if 0 <= ni < 5 and 0 <= nj < 5 and visited[ni][nj] == 0:
             visited[ni][nj] = 1
-            print(ni, nj, place[ni][nj])
             if place[ni][nj] == 'P':
-                print('in')
                 return False
             elif place[ni][nj] == 'O':
                 if not recur(ni, nj, depth + 1, place, visited):
@@ -34,11 +32,8 @@ def recur(ci, cj, depth, place, visited):
 def solution(places):
     answer = []
     for t in range(5):
-        print(t)
         if room(places[t]) == False:
-            print('start')
             answer.append(0)
-            print(answer)
         else:
             answer.append(1)
 
