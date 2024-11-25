@@ -1,10 +1,18 @@
-# 순열 함수 사용하여 풀이
+import sys
+input = sys.stdin.readline
 
-from itertools import combinations, permutations
 
-n,m = list(map(int,input().split()))
+def backtracking(N, M, lst):
+    if len(lst) == M:
+        print(*lst)
+        return
 
-numbers = [x+1 for x in range(n)]
-permutation = list(permutations(numbers, m))
-for answer in permutation:
-    print(" ".join(map(str, answer)))
+    for i in range(1, N + 1):
+        if i not in lst:
+            lst.append(i)
+            backtracking(N, M, lst)
+            lst.pop()
+
+            
+N, M = map(int, input().split())
+backtracking(N, M, [])
