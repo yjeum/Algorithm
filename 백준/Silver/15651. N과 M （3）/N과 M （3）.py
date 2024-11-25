@@ -1,13 +1,17 @@
-def par(n, m, par_lst):
-    if len(par_lst) == m:
-        print(*par_lst)
+import sys
+input = sys.stdin.readline
+
+
+def backtracking(N, M, lst):
+    if len(lst) == M:
+        print(*lst)
         return
-    
-    for i in range(1, n+1):
-        par_lst.append(i)    
-        par(n, m, par_lst)
-        par_lst.pop()
+
+    for i in range(1, N + 1):
+        lst.append(i)
+        backtracking(N, M, lst)
+        lst.pop()
+
 
 N, M = map(int, input().split())
-par_lst = []
-par(N, M, par_lst)
+backtracking(N, M, [])
