@@ -1,14 +1,19 @@
-def par(n, m, par_lst, c):
-    if len(par_lst) == m:
-        print(*par_lst)
+import sys
+input = sys.stdin.readline
+
+
+def backtraking(lst):
+    if len(lst) == M:
+        print(*lst)
         return
-    
-    for i in num_lst:
-        par_lst.append(i)    
-        par(n, m, par_lst, i)
-        par_lst.pop()
+
+    for cur in num_lst:
+        lst.append(cur)
+        backtraking(lst)
+        lst.pop()
+
 
 N, M = map(int, input().split())
-par_lst = []
-num_lst = sorted(list(map(int, input().split())))
-par(N, M, par_lst, 0)
+num_lst = list(map(int, input().split()))
+num_lst.sort()
+backtraking([])
