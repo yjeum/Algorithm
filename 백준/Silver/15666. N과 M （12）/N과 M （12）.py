@@ -1,22 +1,22 @@
 import sys
 input = sys.stdin.readline
 
-def par(par_lst, num_lst, c):
-    if len(par_lst) == M:
-        print(*par_lst)
+
+def backtracking(lst, order):
+    if len(lst) == M:
+        print(*lst)
         return
-    
-    c_n = 0
-    for i in range(c, len(num_lst)):
-        if c_n != num_lst[i]:
-            par_lst.append(num_lst[i])
-            c_n = num_lst[i]
-            par(par_lst, num_lst, i)
-            par_lst.pop()
+
+    cur = 0
+    for i in range(order, N):
+        if cur != num_lst[i]:
+            cur = num_lst[i]
+            lst.append(num_lst[i])
+            backtracking(lst, i)
+            lst.pop()
+
 
 N, M = map(int, input().split())
 num_lst = list(map(int, input().split()))
 num_lst.sort()
-par_lst = []
-
-par(par_lst, num_lst, 0)
+backtracking([], 0)
