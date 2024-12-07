@@ -1,25 +1,23 @@
 import sys
-
 input = sys.stdin.readline
 
 N = int(input())
-
-budget = list(map(int, input().split()))
+budget_lst = list(map(int, input().split()))
 total = int(input())
 
-start, end = 1, max(budget)
+start, end = 1, max(budget_lst)
 
 while start <= end:
     mid = (start + end) // 2
-    result = 0
+    temp_budget = 0
 
-    for i in budget:
-        if i <= mid:
-            result += i
+    for budget in budget_lst:
+        if budget <= mid:
+            temp_budget += budget
         else:
-            result += mid
+            temp_budget += mid
 
-    if result <= total:
+    if temp_budget <= total:
         start = mid + 1
     else:
         end = mid - 1
