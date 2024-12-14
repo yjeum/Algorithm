@@ -15,9 +15,9 @@ for i in range(1, N + 1):  # 만나는 사람
         # 현재 만나는 사람만 인사했을 때에도 체력이 부족한 경우
         if j < hp[i]:
             knapsack[i][j] = knapsack[i - 1][j]
-        # 현재 만나는 사람과 인사가 가능한 경우우
+        # 현재 만나는 사람과 인사가 가능한 경우
         else:
-            # 인사를 하는 경우, 하지 않는 경우 비교교
+            # 인사를 하는 경우, 하지 않는 경우 비교
             knapsack[i][j] = max(
                 knapsack[i - 1][j], joy[i] + knapsack[i - 1][j - hp[i]]
             )
