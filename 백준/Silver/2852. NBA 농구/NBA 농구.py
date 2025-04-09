@@ -15,10 +15,6 @@ def time_trans(time):
     return int(h) * 60 + int(m)
 
 
-def time_retrans(time):
-    return ":".join(time // 60, time % 60)
-
-
 def time_cal(team, goal_time):
     global score, team_1, team_2, before
 
@@ -43,7 +39,6 @@ for i in range(N):
     team, goal_time = input().split()
     time_cal(team, goal_time)
 
-# 종료 시 계산
 time_cal("1", "48:00")
 
 
