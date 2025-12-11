@@ -10,5 +10,8 @@ max_num = 0
 for i in range(N):
     cur_list = num_list[i : i + k] + [c]
     max_num = max(len(set(cur_list)), max_num)
-
+    
+    if max_num == k + 1:
+        break
+        
 print(max_num)
