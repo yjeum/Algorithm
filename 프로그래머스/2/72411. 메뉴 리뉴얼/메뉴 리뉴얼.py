@@ -8,7 +8,7 @@ def solution(orders, course):
         combi_dict = {}
         for order in orders:
             
-            combis = list(combinations(''.join(sorted(order)), number))
+            combis = list(combinations(sorted(order), number))
             for combi in combis:
                 combi_value = ''.join(combi)
                 combi_dict[combi_value] = combi_dict.get(combi_value, 0) + 1
