@@ -1,5 +1,7 @@
 from collections import deque
+
 didj = [[0, 1], [1, 0], [0, -1], [-1, 0]]
+
 def solution(land):
 
     N = len(land)
