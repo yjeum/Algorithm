@@ -1,7 +1,7 @@
 def solution(diffs, times, limit):
     left, right = 1, limit
     
-    while left < right:
+    while left <= right:
         mid = (left + right) // 2
         
         temp = 0
@@ -17,7 +17,7 @@ def solution(diffs, times, limit):
         if temp > limit:
             left = mid + 1
         else:
-            right = mid
+            right = mid - 1
             
-    answer = right
+    answer = left
     return answer
