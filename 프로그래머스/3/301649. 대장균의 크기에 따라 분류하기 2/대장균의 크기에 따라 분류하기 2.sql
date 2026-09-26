@@ -1,0 +1,15 @@
+SELECT PE.ID,
+    CASE
+        WHEN PE.SIZE > 0.75 THEN 'LOW'
+        WHEN PE.SIZE > 0.5 THEN 'MEDIUM'
+        WHEN PE.SIZE > 0.25 THEN 'HIGH'
+        ELSE 'CRITICAL'
+    END AS COLONY_NAME
+FROM 
+    (
+        SELECT
+            E.ID,
+            PERCENT_RANK() OVER (ORDER BY E.SIZE_OF_COLONY DESC) AS SIZE
+        FROM ECOLI_DATA E
+    ) AS PE
+ORDER BY PE.ID
